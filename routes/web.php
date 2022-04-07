@@ -19,17 +19,6 @@ Route::get('/', function () {
     return redirect()->route('dashboard');
 });
 
-// Route::get('/login', function() {
-//     return Inertia::render('auth/Login');
-// })->middleware(['guest'])->name('login');
-
-// Route::post('/logout', 'Auth\AuthenticateSessionController@destroy')
-// ->middleware(['auth', 'verified'])->name('logout');
-
-// Route::get('/register', function() {
-//     return Inertia::render('auth/Register');
-// })->middleware(['guest'])->name('register');
-
 Route::get('/dashboard', function () {
     return Inertia::render('admin/Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
