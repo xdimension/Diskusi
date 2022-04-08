@@ -14,7 +14,7 @@
             <hr class="mt-6 border-b-1 border-blueGray-300" />
           </div>
           <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-            <form>
+            <form @submit.prevent="form.post('/register')">
               <div class="relative w-full mb-3">
                 <label
                   class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -23,10 +23,12 @@
                   Name
                 </label>
                 <input
-                  type="email"
+                  type="text"
                   class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   placeholder="Name"
+                  v-model="form.name"
                 />
+                <div class="text-red-500 text-sm" v-if="form.errors.name">{{ form.errors.name }}</div>
               </div>
 
               <div class="relative w-full mb-3">
@@ -40,7 +42,9 @@
                   type="email"
                   class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   placeholder="Email"
+                  v-model="form.email"
                 />
+                <div class="text-red-500 text-sm" v-if="form.errors.email">{{ form.errors.email }}</div>
               </div>
 
               <div class="relative w-full mb-3">
@@ -54,7 +58,25 @@
                   type="password"
                   class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   placeholder="Password"
+                  v-model="form.password"
                 />
+                <div class="text-red-500 text-sm" v-if="form.errors.password">{{ form.errors.password }}</div>
+              </div>
+
+              <div class="relative w-full mb-3">
+                <label
+                  class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                  htmlFor="grid-password"
+                >
+                  Confirm Password
+                </label>
+                <input
+                  type="password"
+                  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  placeholder="Re-type Password"
+                  v-model="form.password_confirmation"
+                />
+                <div class="text-red-500 text-sm" v-if="form.errors.password_confirmation">{{ form.errors.password_confirmation }}</div>
               </div>
 
               <div>
@@ -76,7 +98,8 @@
               <div class="text-center mt-6">
                 <button
                   class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                  type="button"
+                  type="submit"
+                   :disabled="form.processing"
                 >
                   Create Account
                 </button>
@@ -89,17 +112,23 @@
   </div>
 </template>
 <script>
-import github from "@/assets/img/github.svg";
-import google from "@/assets/img/google.svg";
 import Layout from "@/layouts/Auth.vue";
+import { useForm } from '@inertiajs/inertia-vue3';
 
 export default {
   layout: Layout,
-  data() {
+
+  setup() {
+    const form = useForm({
+      name: '',
+      email: '',
+      password: '',
+      password_confirmation: '',
+    })
+
     return {
-      github,
-      google,
-    };
-  },
+      form,
+    }
+  }
 };
 </script>
