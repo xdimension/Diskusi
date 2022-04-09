@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Thread;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ThreadController extends Controller
 {
@@ -27,13 +28,14 @@ class ThreadController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'title' => ['required'],
-            'slug' => ['required', 'unique:threads'],
             'user_id' => ['required', 'exists:users,id'],
         ]);
+
+        $data['slug'] = Str::slug($data['title']);
             
-        $thread = Thread::create($request->validated());
+        $thread = Thread::create($data);
 
         return $thread;
     }
@@ -58,12 +60,13 @@ class ThreadController extends Controller
      */
     public function update(Request $request, Thread $thread)
     {
-        $request->validate([
+        $data = $request->validate([
             'title' => ['required'],
-            'slug' => ['required', 'unique:threads,slug,' . $thread->id],
         ]);
 
-        $thread->update($request->validated());
+        $data['slug'] = Str::slug($data['title']);
+        
+        $thread->update($data);
 
         return $thread;
     }
@@ -78,6 +81,6 @@ class ThreadController extends Controller
     {
         $thread->delete();
 
-        return response()->json('thread-deleted', 204);
+        return response()->json(null, 204);
     }
 }
