@@ -27,14 +27,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'thread_id' => ['required', 'exists:threads,id'],
             'user_id' => ['required', 'exists:users,id'],
             'title' => 'required',
             'body' => 'required',
         ]);
 
-        $post = Post::create($request->validated());
+        $post = Post::create($data);
 
         return $post;
     }
@@ -59,12 +59,12 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $request->validate([
+        $data = $request->validate([
             'title' => 'required',
             'body' => 'required',
         ]);
 
-        $post->update($request->validated());
+        $post->update($data);
 
         return $post;
     }
@@ -79,6 +79,6 @@ class PostController extends Controller
     {
         $post->delete();
 
-        return response()->json('post-deleted', 204);
+        return response()->json(null, 204);
     }
 }
