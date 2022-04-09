@@ -18,6 +18,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/test', function() {
-    return response()->json()->withCookie(cookie('test_my_cookie', 'justatestagain', 60, httpOnly: false));
-});
+Route::apiResources([
+    'threads' => ThreadController::class,
+    'posts' => PostController::class,
+]);
