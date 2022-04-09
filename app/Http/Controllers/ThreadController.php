@@ -61,7 +61,6 @@ class ThreadController extends Controller
         $request->validate([
             'title' => ['required'],
             'slug' => ['required', 'unique:threads,slug,' . $thread->id],
-            'user_id' => ['required', 'exists:users,id'],
         ]);
 
         $thread->update($request->validated());
