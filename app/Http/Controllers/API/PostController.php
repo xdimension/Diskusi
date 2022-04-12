@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
+use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -14,9 +16,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::with('user')->paginate(10);
 
-        return $posts;
+        return PostResource::collection($posts);
     }
 
     /**
@@ -47,7 +49,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return $post;
+        return new PostResource($post);
     }
 
     /**

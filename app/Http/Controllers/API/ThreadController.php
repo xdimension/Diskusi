@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ThreadResource;
 use App\Models\Thread;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -15,9 +17,9 @@ class ThreadController extends Controller
      */
     public function index()
     {
-        $threads = Thread::all();
+        $threads = Thread::with(['user','posts'])->paginate(20);
 
-        return $threads;
+        return ThreadResource::collection($threads);
     }
 
     /**
@@ -48,7 +50,7 @@ class ThreadController extends Controller
      */
     public function show(Thread $thread)
     {
-        return $thread;
+        return new ThreadResource($thread->load(['user','posts']));
     }
 
     /**

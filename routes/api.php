@@ -19,6 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResources([
-    'threads' => ThreadController::class,
-    'posts' => PostController::class,
+    'threads' => API\ThreadController::class,
+    'posts' => API\PostController::class,
 ]);
