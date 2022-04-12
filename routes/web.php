@@ -23,4 +23,10 @@ Route::get('/dashboard', function () {
     return Inertia::render('Admin/Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::prefix('admin/manage')->middleware(['auth', 'admin'])->group(function() {
+    Route::get('threads', 'ThreadController@index')->name('threads.index');
+
+});
+
+
 require __DIR__.'/auth.php';
