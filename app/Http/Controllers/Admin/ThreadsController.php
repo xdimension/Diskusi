@@ -8,7 +8,7 @@ use App\Http\Requests\UpdateThreadRequest;
 use App\Models\Thread;
 use Inertia\Inertia;
 
-class ThreadController extends Controller
+class ThreadsController extends Controller
 {
     /**
      * Display a listing of the resource.
