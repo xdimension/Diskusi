@@ -16,17 +16,32 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return redirect()->route('dashboard');
+    return Inertia::render('Index');
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Admin/Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::prefix('admin')->middleware(['auth', 'admin'])
+->group(function () {
 
-Route::prefix('admin/manage')->middleware(['auth', 'admin'])->group(function() {
-    Route::get('threads', 'ThreadController@index')->name('threads.index');
+    Route::prefix('manage')->group(function() {
+        Route::get('threads', 'ThreadController@index')->name('threads.index');
+    
+    });
 
+    Route::get('Dashboard', function () {
+        return Inertia::render('Admin/Dashboard');
+    })->name('dashboard');
+              
+    Route::get('Profile', function () {
+        return Inertia::render('Admin/Profile');
+    })->name('Profile');    
+  
+    Route::get('Settings', function () {
+        return Inertia::render('Admin/Settings');
+    })->name('Settings');    
+
+    Route::get('Tables', function () {
+        return Inertia::render('Admin/Tables');
+    })->name('Tables');    
 });
-
 
 require __DIR__.'/auth.php';
