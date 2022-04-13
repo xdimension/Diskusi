@@ -42,9 +42,6 @@
         </ul>
         <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
           <li class="flex items-center">
-            <PagesDropdown />
-          </li>
-          <li class="flex items-center">
             <a
               class="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
               href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdemos.creative-tim.com%2Fvue-notus%2F%23%2F"
@@ -97,7 +94,6 @@
   </nav>
 </template>
 <script>
-import PagesDropdown from "@/components/Dropdowns/PagesDropdown.vue";
 import { Link } from "@inertiajs/inertia-vue3";
 
 export default {
@@ -112,7 +108,6 @@ export default {
     },
   },
   components: {
-    PagesDropdown,
     Link,
 },
 };
