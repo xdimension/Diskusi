@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->text('body');
+            $table->enum('status', ['active', 'inactive']);
             $table->timestamps();
 
             $table->foreign('thread_id')->on('threads')->references('id')->onDelete('cascade');
