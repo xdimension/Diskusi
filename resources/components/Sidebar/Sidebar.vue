@@ -144,6 +144,31 @@
                 Tables
               </Link>
           </li>
+
+          <li class="items-center">
+            <Link
+              class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+              href="/admin/manage/threads"
+            >
+              <i
+                class="fas fa-fingerprint text-blueGray-300 mr-2 text-sm"
+              ></i>
+              Manage Threads
+            </Link>
+          </li>
+
+          <li class="items-center">
+            <Link
+              class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+              href="/admin/manage/posts"
+            >
+              <i
+                class="fas fa-fingerprint text-blueGray-300 mr-2 text-sm"
+              ></i>
+              Manage Posts
+            </Link>
+          </li>
+          
         </ul>
 
         <!-- Divider -->
@@ -192,29 +217,6 @@
             </Link>
           </li>
 
-          <li class="items-center">
-            <Link
-              class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-              href="/admin/manage/threads"
-            >
-              <i
-                class="fas fa-fingerprint text-blueGray-300 mr-2 text-sm"
-              ></i>
-              Manage Threads
-            </Link>
-          </li>
-
-          <li class="items-center">
-            <Link
-              class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
-              href="/admin/manage/posts"
-            >
-              <i
-                class="fas fa-fingerprint text-blueGray-300 mr-2 text-sm"
-              ></i>
-              Manage Posts
-            </Link>
-          </li>
         </ul>
 
         <!-- Divider -->
