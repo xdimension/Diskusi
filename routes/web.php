@@ -23,7 +23,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])
 ->group(function () {
 
     Route::prefix('manage')->group(function() {
-        Route::get('threads', 'ThreadController@index')->name('threads.index');
+        Route::get('threads', 'ThreadsController@index')->name('threads.index');
+        Route::get('posts', 'PostsController@index')->name('posts.index');
     
     });
 
